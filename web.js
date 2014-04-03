@@ -72,10 +72,15 @@ app.get('/log-em', function (req, res) {
   } else {
     var email = req.session.email;
     var username = email.replace("@mozillafoundation.org", "");
-    res.render('log-em', {
-      currentUser: email,
-      username: username,
-      authorized: (req.session.authorized)
+
+    data.recentlyLogged(email, function gotRecentlyLogged(err, results) {
+      var recent = util.cleanRecentForPresentation(results);
+      res.render('log-em', {
+        currentUser: email,
+        username: username,
+        authorized: (req.session.authorized),
+        recentlyLogged: recent
+      });
     });
   }
 });
@@ -88,7 +93,7 @@ app.post('/log-em', function (req, res) {
       if (err) {
         console.error(err);
       }
-      res.redirect('/log-em?yippee');
+      res.redirect('/log-em#logged');
     });
   }
 });

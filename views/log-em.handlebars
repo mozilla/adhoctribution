@@ -41,6 +41,23 @@
 <br /><br /><br /><br /><hr />
 <div class="row">
   <div class="col-sm-12">
-  <h4>Logged by you (most recent)</h4>
+  <h4 id="logged">Logged by you (most recent) <a href="#top" class="btn btn-xs btn-default pull-right">Log more ^</a></h4>
+  <table class="table table-striped">
+  <tr>
+    <th>Logged on</th>
+    <th>Contributor ID</th>
+    <th>Contribution Date</th>
+    <th>Team</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  {{#each recentlyLogged}}
+    <tr>
+    {{#each this}}
+      <td>{{this}}</td>
+    {{/each}}
+    </tr>
+  {{/each}}
+  </table>
   </div>
 </div>
