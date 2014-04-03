@@ -2,6 +2,7 @@ var express = require("express");
 var logfmt = require("logfmt");
 var util = require("./lib/util");
 var logic = require("./lib/logic");
+var data = require("./lib/data");
 var app = express();
 
 // set up handlebars view engine
@@ -57,7 +58,9 @@ app.get('/', function (req, res) {
   if (req.session.authorized) {
     res.redirect('/log-em');
   } else {
+    var email = req.session.email;
     res.render('home', {
+      currentUser: email,
       authorized: (req.session.authorized)
     });
   }
@@ -88,6 +91,37 @@ app.post('/log-em', function (req, res) {
       res.redirect('/log-em?yippee');
     });
   }
+});
+
+app.get('/api', function (req, res) {
+  var date = null;
+  var team = null;
+
+  if (req.query.date) {
+    date = new Date(req.query.date);
+    if (Object.prototype.toString.call(date) === "[object Date]") {
+      if (isNaN(date.getTime())) {
+        date = null; // date is not valid
+      }
+    } else {
+      date = null;
+    }
+  }
+
+  if (!date) {
+    res.end('Missing parameter: "date". Must be in this format: YYYY-MM-DD.');
+    return;
+  }
+
+  team = req.query.team;
+  if (!team) {
+    res.end('Missing parameter: "team". E.g. webmaker, openbadges, opennews, appmaker, sciencelab, engagement');
+    return;
+  }
+
+  data.getContributorCounts(date, team, function gotCounts(err, result) {
+    res.json(result);
+  });
 });
 
 var port = Number(process.env.PORT || 5000);

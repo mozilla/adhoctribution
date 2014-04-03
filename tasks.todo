@@ -1,10 +1,7 @@
  MVP:
  ☐ CSRF
- ☐ Help pop-up
- ☐ Bugs link to repo
  ☐ enforce SSL on heroku
  ☐ Thank you page, explain graph updated soon
- ☐ API that groups the buckets
 
 Nice to have:
  ☐ Check tab order
@@ -16,9 +13,12 @@ Nice to have:
  ☐ Date picker
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
- ✔ Save an entry @done (14-04-03 12:28)
+ ✔ Bugs link to repo @done (14-04-03 15:08)
+ ✔ Help pop-up @done (14-04-03 15:07)
+ ✔ API that groups the buckets @done (14-04-03 14:51)
  ✔ data lib @done (14-04-03 12:28)
  ✔ Setup database local @done (14-04-03 12:28)
+ ✔ Save an entry @done (14-04-03 12:28)
  ✔ DB creds @done (14-04-03 12:28)
  ✔ Front end validation on form @done (14-04-03 10:25)
  ✔ Persona force redirect after login @done (14-04-03 08:55)

@@ -36,14 +36,48 @@
         <div class="col-sm-2">
           {{#if authorized}}
             <p class="small text-right">{{{username}}}</p>
-            <button id="logout" class="btn btn-xs btn-warning pull-right">Sign out</button>
+            <button id="logout" class="btn btn-xs btn-warning pull-right">Sign out</button><br /><br />
+            <button id="help" class="btn btn-xs btn-info pull-right" data-toggle="modal" data-target="#myModal">Help!</button>
           {{else}}
+            {{#unless currentUser}}
             <br />
             <a id="login" class="btn btn-primary btn-lg pull-right" role="button">Sign in &raquo;</a>
+            {{/unless}}
           {{/if}}
         </div>
       </div>
     </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">...is at hand.</h4>
+      </div>
+      <div class="modal-body">
+        <h4>What should I record here?</h4>
+        <p>Contribution activity that doesn't exist in another database. For example, don't log code contribution here if it's already in Gitbhub. But, this would be a good place to note people who presented on a community call.</p>
+        <hr />
+        <h4>What counts as contribtuion?</h4>
+        <p>In the end, that's your call, but <a href="https://wiki.mozilla.org/Foundation/Metrics/Contributor_Dashboard#Sniff_test" target="_blank">see the Sniff Test</a> for guidance.</p>
+        <hr />
+        <h4>It broke! And I wish it would...</h4>
+        <ul>
+          <li><a href="https://github.com/adamlofting/adhoctribution/issues" target="_blank">File a bug or request (github issues)</a></li>
+          <li><a href="https://github.com/adamlofting/adhoctribution/" target="_blank">Contribute code.</a></li>
+        </ul>
+        <hr />
+        <h4>Still not sure about something?</h4>
+        <p>Ping Adam Lofting.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -60,7 +94,7 @@
   		}, false);
     }
 
-    var logout = document.querySelector("#logout")
+    var logout = document.querySelector("#logout");
     if (logout) {
       logout.addEventListener("click", function() {
         navigator.id.logout();

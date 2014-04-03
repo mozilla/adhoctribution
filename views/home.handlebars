@@ -1,1 +1,9 @@
 <h1>Welcome, Mofos</h1>
+
+{{#if authorized}}
+<!-- nada -->
+{{else}}
+{{#if currentUser }}
+<p>You need to use your MoFo email: <button id="logout" class="btn btn-xs btn-warning">Sign out</button></p>
+{{/if}}
+{{/if}}
