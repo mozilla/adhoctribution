@@ -12,7 +12,8 @@ module.exports = function (grunt) {
 
   var clientSideJS = [
     'public/js/**/*.js',
-    '!public/js/lib/**'
+    '!public/js/lib/**',
+    '!public/js/vendor/**'
   ];
 
   var nodeJS = [

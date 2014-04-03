@@ -3,7 +3,8 @@
     "module": true,
     "define": true,
     "requirejs": true,
-    "require": true
+    "require": true,
+    "$": true
   },
   "bitwise": true,
   "curly": true,

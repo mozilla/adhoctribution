@@ -1,0 +1,25 @@
+{
+  "name": "adhoctribution",
+  "version": "0.0.0",
+  "homepage": "https://github.com/adamlofting/adhoctribution",
+  "authors": [
+    "Adam Lofting <contactme@adamlofting.com>"
+  ],
+  "description": "A tool for logging ad-hoc contribution activities that we can't count elsewhere",
+  "main": "web.js",
+  "keywords": [
+    "contribution"
+  ],
+  "license": "MPL2",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery.validation": "~1.12.0"
+  }
+}

@@ -1,8 +1,21 @@
- ☐ persona login
- ☐ HTML Boilerplate
- ☐ Makerstrap
+ MVP:
+ ☐ CSRF
+ ☐ Setup database local
+ ☐ DB creds
+ ☐ data lib
+ ☐ Help pop-up
+ ☐ Bugs link to repo
+ ☐ Save an entry
 
+Nice to have:
+ ☐ Check tab order
+ ☐ Remember users team etc.
+ ☐ Show the last activity logged by that user
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Front end validation on form @done (14-04-03 10:25)
+ ✔ Persona force redirect after login @done (14-04-03 08:55)
+ ✔ persona login @done (14-04-02 15:43)
+ ✔ HTML Boilerplate @done (14-04-02 15:43)
  ✔ basic express setup @done (14-04-02 10:31)
  ✔ checkout jsbeautify @done (14-04-02 10:30)

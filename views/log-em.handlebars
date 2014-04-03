@@ -1,0 +1,46 @@
+<div class="row">
+	<form id="contributionForm" method="post" action="">
+		<div class="col-sm-4">
+			<h3>What</h3>
+			<h5>Team</h5>
+			<select class="form-control" name="team-name" required>
+				<option value="default">--Select</option>
+				<option value="appmaker">Appmaker</option>
+				<option value="openbadges">Badges</option>
+				<option value="engagement">Engagement</option>
+				<option value="opennews">Open News</option>
+				<option value="sciencelab">Science Lab</option>
+				<option value="webmaker">Webmaker</option>
+			</select>
+			<h5>Bucket</h5>
+			<select class="form-control" name="data-bucket" required>
+				<option value="default">--Select</option>
+				<option value="content">Content</option>
+				<option value="translation">Translation</option>
+				<option value="events">Events</option>
+				<option value="training">Completed Training</option>
+				<option value="community">Community Calls</option>
+				<option value="partner">Partner</option>
+				<option value="testing">Testing &amp; QA</option>
+				<option value="apis">Build on our APIs</option>
+			</select>
+			<h5>Description</h5>
+			<textarea class="form-control" name="description" rows="2" required></textarea>
+			<h3>When</h3>
+			<input type="text" class="form-control date-format" name="date" id="date" placeholder="YYYY-MM-DD" required>
+			<br /><button class="btn btn-default btn-xs" id="btnToday">Today</a>
+		</div>
+		<div class="col-sm-8">
+			<h3>Who</h3>
+			<p class="small">Comma, or line seperated email addresses.</p>
+			<textarea class="form-control" rows="16" name="contributors" required></textarea><br />
+			<button type="submit" class="btn btn-primary btn-lg">Log this &raquo;</a>
+		</div>
+	</form>
+</div>
+<br /><br /><br /><br /><hr />
+<div class="row">
+	<div class="col-sm-12">
+	<h4>Logged by you (most recent)</h4>
+	</div>
+</div>
