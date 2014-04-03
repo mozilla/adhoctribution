@@ -1,6 +1,7 @@
 var express = require("express");
 var logfmt = require("logfmt");
 var util = require("./lib/util");
+var logic = require("./lib/logic");
 var app = express();
 
 // set up handlebars view engine
@@ -80,7 +81,12 @@ app.post('/log-em', function (req, res) {
   if (!req.session.authorized) {
     res.redirect('/');
   } else {
-    res.redirect('/log-em?yippee');
+    logic.processForm(req.body, req.session.email, function processedForm(err, response) {
+      if (err) {
+        console.error(err);
+      }
+      res.redirect('/log-em?yippee');
+    });
   }
 });
 

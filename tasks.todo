@@ -1,18 +1,25 @@
  MVP:
  ☐ CSRF
- ☐ Setup database local
- ☐ DB creds
- ☐ data lib
  ☐ Help pop-up
  ☐ Bugs link to repo
- ☐ Save an entry
+ ☐ enforce SSL on heroku
+ ☐ Thank you page, explain graph updated soon
+ ☐ API that groups the buckets
 
 Nice to have:
  ☐ Check tab order
+ ☐ Readme
+ ☐ Contribution Notes
+ ☐ SQL scripts
  ☐ Remember users team etc.
  ☐ Show the last activity logged by that user
+ ☐ Date picker
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Save an entry @done (14-04-03 12:28)
+ ✔ data lib @done (14-04-03 12:28)
+ ✔ Setup database local @done (14-04-03 12:28)
+ ✔ DB creds @done (14-04-03 12:28)
  ✔ Front end validation on form @done (14-04-03 10:25)
  ✔ Persona force redirect after login @done (14-04-03 08:55)
  ✔ persona login @done (14-04-02 15:43)

@@ -17,5 +17,6 @@
   "noempty": true,
   "trailing": true,
   "undef": true,
-  "unused": "vars"
+  "unused": "vars",
+  "node": true
 }
