@@ -2,13 +2,13 @@
  ☐ enforce SSL on heroku
 
 Nice to have:
- ☐ Readme
- ☐ Contribution Notes
  ☐ Remember users team etc.
- ☐ Date picker
- ☐ Content for persona pop-up
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Date picker @done (14-04-04 13:49) @project(Nice to have)
+ ✔ Content for persona pop-up @done (14-04-04 13:26) @project(Nice to have)
+ ✔ Readme @done (14-04-04 13:04) @project(Nice to have)
+ ✔ Contribution Notes @done (14-04-04 13:04) @project(Nice to have)
  ✔ SQL scripts @done (14-04-04 13:00) @project(Nice to have)
  ✔ Thank you page, explain graph updated soon @done (14-04-04 12:58)
  ✔ CSRF @done (14-04-04 11:59)

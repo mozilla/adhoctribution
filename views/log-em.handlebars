@@ -4,7 +4,7 @@
     <div class="col-sm-4">
       <h3>What</h3>
       <h5>Team</h5>
-      <select class="form-control" name="teamname" required>
+      <select class="form-control" name="teamname" id="teamname" required>
         <option value="default">--Select</option>
         <option value="appmaker">Appmaker</option>
         <option value="openbadges">Badges</option>
@@ -29,7 +29,7 @@
       <textarea class="form-control" name="description" rows="2" required></textarea>
       <h3>When <span class="glyphicon glyphicon-question-sign tooltipActive" data-toggle="tooltip" data-placement="right" title="The date the contribution activity happened"></span>
 </h3>
-      <input type="text" class="form-control date-format" name="date" id="date" placeholder="YYYY-MM-DD" required>
+      <input type="text" class="form-control date-format datePickerActive" name="date" id="date" placeholder="YYYY-MM-DD" required>
       <br /><button class="btn btn-default btn-xs" id="btnToday">Today <span class="glyphicon glyphicon-calendar"></span></a>
     </div>
     <div class="col-sm-8">

@@ -49,3 +49,23 @@ $("#btnToday").click(function (event) {
 
 // Tooltop
 $('.tooltipActive').tooltip();
+
+// Datepicker
+$('.datePickerActive').datepicker({
+  format: "yyyy-mm-dd",
+  autoclose: true,
+  todayHighlight: true
+});
+
+// remember a users team for convenience
+$("#teamname").change(function () {
+  $.cookie('team', $(this).val(), {
+    expires: 30
+  });
+});
+
+$(document).ready(function () {
+  if ($.cookie('team')) {
+    $("#teamname").val($.cookie('team'));
+  }
+});
