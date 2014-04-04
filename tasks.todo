@@ -1,16 +1,16 @@
  MVP:
  ☐ enforce SSL on heroku
- ☐ Thank you page, explain graph updated soon
 
 Nice to have:
  ☐ Readme
  ☐ Contribution Notes
- ☐ SQL scripts
  ☐ Remember users team etc.
  ☐ Date picker
  ☐ Content for persona pop-up
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ SQL scripts @done (14-04-04 13:00) @project(Nice to have)
+ ✔ Thank you page, explain graph updated soon @done (14-04-04 12:58)
  ✔ CSRF @done (14-04-04 11:59)
  ✔ Check tab order @done (14-04-04 10:22) @project(Nice to have)
  ✔ Show the last activity logged by that user @done (14-04-04 10:21) @project(Nice to have)
