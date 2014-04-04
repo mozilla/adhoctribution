@@ -55,7 +55,7 @@ require("express-persona")(app, {
       });
       return;
     }
-
+    console.log("Login attempt by: ", req.session.email);
     res.json({
       status: "failure",
       reason: "Only users with a mozillafoundation.org email address may use this tool"
@@ -105,6 +105,20 @@ app.post('/log-em', restrict, function (req, res) {
     if (err) {
       console.error(err);
     }
+    res.redirect('/log-em#logged');
+  });
+});
+
+app.get('/delete', restrict, function (req, res) {
+  var toDelete = {
+    logged_by: req.session.email,
+    contributor_id: req.query.contributor_id,
+    contribution_date: req.query.contribution_date,
+    mofo_team: req.query.mofo_team,
+    data_bucket: req.query.data_bucket
+  };
+  data.deleteItem(toDelete, function deletedItem(err, response) {
+    console.log("deleted", req.session.email);
     res.redirect('/log-em#logged');
   });
 });

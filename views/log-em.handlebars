@@ -52,12 +52,15 @@
     <th>Team</th>
     <th>Type</th>
     <th>Description</th>
+    <th>&nbsp;</th>
   </tr>
   {{#each recentlyLogged}}
     <tr>
     {{#each this}}
       <td>{{this}}</td>
     {{/each}}
+
+    <td><a href="/delete?contributor_id={{contributor_id}}&contribution_date={{contribution_date}}&mofo_team={{mofo_team}}&data_bucket={{data_bucket}}" onclick="return confirm('Are you sure?')" class="btn btn-xm"><span class="glyphicon glyphicon-trash"></span></a></td>
     </tr>
   {{/each}}
   </table>

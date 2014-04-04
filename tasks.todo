@@ -1,9 +1,10 @@
  MVP:
- ☐ sample .env
 
 Nice to have:
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Delete recent entry option (only applies to self) @done (14-04-04 15:35)
+ ✔ sample .env @done (14-04-04 14:52)
  ✔ enforce SSL on heroku @done (14-04-04 14:34)
  ✔ Remember users team etc. @done (14-04-04 14:06) @project(Nice to have)
  ✔ Date picker @done (14-04-04 13:49) @project(Nice to have)
