@@ -25,7 +25,8 @@
     "mysql": "~2.1.1",
     "logfmt": "~1.1.2",
     "express-persona": "~0.1.1",
-    "express3-handlebars": "~0.5.0"
+    "express3-handlebars": "~0.5.0",
+    "express-sslify": "0.0.1"
   },
   "devDependencies": {
     "grunt-jsbeautifier": "~0.2.6",

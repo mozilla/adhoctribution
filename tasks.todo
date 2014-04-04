@@ -1,10 +1,11 @@
  MVP:
  ☐ enforce SSL on heroku
+ ☐ sample .env
 
 Nice to have:
- ☐ Remember users team etc.
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Remember users team etc. @done (14-04-04 14:06) @project(Nice to have)
  ✔ Date picker @done (14-04-04 13:49) @project(Nice to have)
  ✔ Content for persona pop-up @done (14-04-04 13:26) @project(Nice to have)
  ✔ Readme @done (14-04-04 13:04) @project(Nice to have)

@@ -3,6 +3,8 @@ var logfmt = require("logfmt");
 var util = require("./lib/util");
 var logic = require("./lib/logic");
 var data = require("./lib/data");
+var enforce = require('express-sslify');
+
 var app = express();
 
 // set up handlebars view engine
@@ -14,6 +16,9 @@ app.set('view engine', 'handlebars');
 
 app.use(logfmt.requestLogger());
 app.use(express.favicon());
+app.configure('production', function () {
+  app.use(enforce.HTTPS(true));
+});
 app.use(express.urlencoded());
 app.use(express.cookieParser(process.env.COOKIE_SECRET));
 app.use(express.session({
