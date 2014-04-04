@@ -126,6 +126,7 @@ app.get('/delete', restrict, function (req, res) {
 app.get('/api', function (req, res) {
   var date = null;
   var team = null;
+  var bucket = null;
 
   if (req.query.date) {
     date = new Date(req.query.date);
@@ -149,7 +150,13 @@ app.get('/api', function (req, res) {
     return;
   }
 
-  data.getContributorCounts(date, team, function gotCounts(err, result) {
+  bucket = req.query.bucket;
+  if (!bucket) {
+    res.end('Missing parameter: "bucket". E.g. code, content, events, training, community, testing, apis');
+    return;
+  }
+
+  data.getContributorCounts(date, team, bucket, function gotCounts(err, result) {
     res.json(result);
   });
 });
