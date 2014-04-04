@@ -46,3 +46,6 @@ $("#btnToday").click(function (event) {
   var s = dateToISOString(today);
   $("#date").val(s);
 });
+
+// Tooltop
+$('.tooltipActive').tooltip();

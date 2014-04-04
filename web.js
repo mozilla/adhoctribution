@@ -13,16 +13,30 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.use(logfmt.requestLogger());
-app.use(express.json());
+app.use(express.favicon());
 app.use(express.urlencoded());
-app.use(express.cookieParser());
+app.use(express.cookieParser(process.env.COOKIE_SECRET));
 app.use(express.session({
   secret: process.env.SESSION_SECRET
 }));
-app.use(express.favicon());
+app.use(express.csrf());
+app.use(function (req, res, next) {
+  res.cookie('XSRF-TOKEN', req.csrfToken());
+  res.locals.token = req.csrfToken();
+  next();
+});
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
 app.use('/bower', express.static(__dirname + '/bower_components'));
+
+// middleware to restrict access to internal routes
+function restrict(req, res, next) {
+  if (req.session.authorized) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+}
 
 // persona
 require("express-persona")(app, {
@@ -66,36 +80,28 @@ app.get('/', function (req, res) {
   }
 });
 
-app.get('/log-em', function (req, res) {
-  if (!req.session.authorized) {
-    res.redirect('/');
-  } else {
-    var email = req.session.email;
-    var username = email.replace("@mozillafoundation.org", "");
+app.get('/log-em', restrict, function (req, res) {
+  var email = req.session.email;
+  var username = email.replace("@mozillafoundation.org", "");
 
-    data.recentlyLogged(email, function gotRecentlyLogged(err, results) {
-      var recent = util.cleanRecentForPresentation(results);
-      res.render('log-em', {
-        currentUser: email,
-        username: username,
-        authorized: (req.session.authorized),
-        recentlyLogged: recent
-      });
+  data.recentlyLogged(email, function gotRecentlyLogged(err, results) {
+    var recent = util.cleanRecentForPresentation(results);
+    res.render('log-em', {
+      currentUser: email,
+      username: username,
+      authorized: (req.session.authorized),
+      recentlyLogged: recent
     });
-  }
+  });
 });
 
-app.post('/log-em', function (req, res) {
-  if (!req.session.authorized) {
-    res.redirect('/');
-  } else {
-    logic.processForm(req.body, req.session.email, function processedForm(err, response) {
-      if (err) {
-        console.error(err);
-      }
-      res.redirect('/log-em#logged');
-    });
-  }
+app.post('/log-em', restrict, function (req, res) {
+  logic.processForm(req.body, req.session.email, function processedForm(err, response) {
+    if (err) {
+      console.error(err);
+    }
+    res.redirect('/log-em#logged');
+  });
 });
 
 app.get('/api', function (req, res) {

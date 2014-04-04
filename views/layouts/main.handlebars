@@ -36,8 +36,8 @@
         <div class="col-sm-2">
           {{#if authorized}}
             <p class="small text-right">{{{username}}}</p>
-            <button id="logout" class="btn btn-xs btn-warning pull-right">Sign out</button><br /><br />
-            <button id="help" class="btn btn-xs btn-info pull-right" data-toggle="modal" data-target="#myModal">Help!</button>
+            <button id="logout" class="btn btn-xs btn-warning pull-right">Sign out <span class="glyphicon glyphicon-remove-sign"></span></button><br /><br />
+            <button id="help" class="btn btn-xs btn-info pull-right" data-toggle="modal" data-target="#myModal">Help <span class="glyphicon glyphicon-phone-alt"></span></button>
           {{else}}
             {{#unless currentUser}}
             <br />
@@ -54,7 +54,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">...is at hand.</h4>
+        <h4 class="modal-title" id="myModalLabel">...is at hand. <a href="http://www.youtube.com/watch?v=pd_2ins6lcA" target="_blank">Bat phone</a>.</h4>
       </div>
       <div class="modal-body">
         <h4>What should I record here?</h4>
@@ -70,7 +70,7 @@
         </ul>
         <hr />
         <h4>How long?</h4>
-        <p>The dashboard will be udpated with recent contribution activity within an hour. Backdated activity is updated every few hours.</p>
+        <p>The contributor dashboard will be udpated with recent contribution activity within an hour. Backdated activity is updated every few hours.</p>
         <hr />
         <h4>Still not sure about something?</h4>
         <p>Ping Adam Lofting.</p>
@@ -112,24 +112,10 @@
 		navigator.id.watch({
       loggedInUser: currentUser,
 		  onlogin: function(assertion) {
-		    // var xhr = new XMLHttpRequest();
-		    // xhr.open("POST", "/persona/verify", true);
-		    // xhr.setRequestHeader("Content-Type", "application/json");
-		    // xhr.addEventListener("loadend", function(e) {
-		    //   var data = JSON.parse(this.responseText);
-		    //   if (data && data.status === "okay") {
-		    //     console.log("You have been logged in as: " + data.email);
-		    //   }
-		    // }, false);
-
-		    // xhr.send(JSON.stringify({
-		    //   assertion: assertion
-		    // }));
-
-        $.ajax({ /* <-- This example uses jQuery, but you can use whatever you'd like */
+        $.ajax({
           type: 'POST',
           url: '/persona/verify',
-          data: { assertion: assertion },
+          data: { assertion: assertion, _csrf: '{{{token}}}' },
           success: function(res, status, xhr) {
             window.location.reload();
           },
@@ -140,16 +126,10 @@
         });
 		  },
 		  onlogout: function() {
-		    // var xhr = new XMLHttpRequest();
-		    // xhr.open("POST", "/persona/logout", true);
-		    // xhr.addEventListener("loadend", function(e) {
-		    //   console.log("You have been logged out");
-		    // });
-		    // xhr.send();
-
         $.ajax({
           type: 'POST',
           url: '/persona/logout',
+          data: { _csrf: '{{{token}}}' },
           success: function(res, status, xhr) { window.location.reload(); },
           error: function(xhr, status, err) { alert("Logout failure: " + err); }
         });

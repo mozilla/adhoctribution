@@ -1,5 +1,6 @@
 <div class="row">
   <form id="contributionForm" method="post" action="/log-em">
+    <input type="hidden" name="_csrf" value="{{{token}}}">
     <div class="col-sm-4">
       <h3>What</h3>
       <h5>Team</h5>
@@ -12,7 +13,7 @@
         <option value="sciencelab">Science Lab</option>
         <option value="webmaker">Webmaker</option>
       </select>
-      <h5>Bucket</h5>
+      <h5>Type <span class="glyphicon glyphicon-question-sign tooltipActive" data-toggle="tooltip" data-placement="right" title="Let me know if you need a new bucket here"></span></h5>
       <select class="form-control" name="databucket" required>
         <option value="default">--Select</option>
         <option value="content">Content</option>
@@ -24,24 +25,25 @@
         <option value="testing">Testing &amp; QA</option>
         <option value="apis">Build on our APIs</option>
       </select>
-      <h5>Description</h5>
+      <h5>Description <span class="glyphicon glyphicon-question-sign tooltipActive" data-toggle="tooltip" data-placement="right" title="No essays, just enough that we can look back and know what this was about."></span></h5>
       <textarea class="form-control" name="description" rows="2" required></textarea>
-      <h3>When</h3>
+      <h3>When <span class="glyphicon glyphicon-question-sign tooltipActive" data-toggle="tooltip" data-placement="right" title="The date the contribution activity happened"></span>
+</h3>
       <input type="text" class="form-control date-format" name="date" id="date" placeholder="YYYY-MM-DD" required>
-      <br /><button class="btn btn-default btn-xs" id="btnToday">Today</a>
+      <br /><button class="btn btn-default btn-xs" id="btnToday">Today <span class="glyphicon glyphicon-calendar"></span></a>
     </div>
     <div class="col-sm-8">
       <h3>Who</h3>
-      <p class="small">Email addresses: seperated by a comma, semicolon, or new lines</p>
+      <p class="small">Email addresses: seperated by a comma, semicolon, or new lines <span class="glyphicon glyphicon-question-sign tooltipActive" data-toggle="tooltip" data-placement="top" title="Just emails, no names. This alows us to de-dupe people."></span></p>
       <textarea class="form-control" rows="16" name="contributors" required></textarea><br />
-      <button type="submit" class="btn btn-primary btn-lg">Log this &raquo;</a>
+      <button type="submit" class="btn btn-primary btn-lg">Log this <span class="glyphicon glyphicon-ok-sign"></span></a>
     </div>
   </form>
 </div>
 <br /><br /><br /><br /><hr />
 <div class="row">
   <div class="col-sm-12">
-  <h4 id="logged">Logged by you (most recent) <a href="#top" class="btn btn-xs btn-default pull-right">Log more ^</a></h4>
+  <h4 id="logged">Logged by you (most recent) <a href="#top" class="btn btn-xs btn-default pull-right">Log more <span class="glyphicon glyphicon-arrow-up"></span></a></h4>
   <table class="table table-striped">
   <tr>
     <th>Logged on</th>

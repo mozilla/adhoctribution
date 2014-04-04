@@ -1,18 +1,19 @@
  MVP:
- ☐ CSRF
  ☐ enforce SSL on heroku
  ☐ Thank you page, explain graph updated soon
 
 Nice to have:
- ☐ Check tab order
  ☐ Readme
  ☐ Contribution Notes
  ☐ SQL scripts
  ☐ Remember users team etc.
- ☐ Show the last activity logged by that user
  ☐ Date picker
+ ☐ Content for persona pop-up
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ CSRF @done (14-04-04 11:59)
+ ✔ Check tab order @done (14-04-04 10:22) @project(Nice to have)
+ ✔ Show the last activity logged by that user @done (14-04-04 10:21) @project(Nice to have)
  ✔ Bugs link to repo @done (14-04-03 15:08)
  ✔ Help pop-up @done (14-04-03 15:07)
  ✔ API that groups the buckets @done (14-04-03 14:51)
