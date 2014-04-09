@@ -54,13 +54,13 @@ $("#btnQuicklink").click(function (event) {
   var type = encodeURI($("#databucket").val());
   var description = encodeURI($("#description").val());
   var date = encodeURI($("#date").val());
-  var quickLink = location.protocol + '//' + location.hostname + '/log-em?team=' +team+ '&type=' +type+ '&description=' + description +'&date=' + date;
+  var quickLink = location.protocol + '//' + location.hostname + '/log-em?team=' + team + '&type=' + type + '&description=' + description + '&date=' + date;
   $('#linkToCopy').val(quickLink);
   $('#linkModal').modal();
 });
 
 $("#linkToCopy").on("click", function () {
-   $(this).select();
+  $(this).select();
 });
 
 // Tooltop
