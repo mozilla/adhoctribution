@@ -39,6 +39,7 @@ function restrict(req, res, next) {
   if (req.session.authorized) {
     next();
   } else {
+    req.session.targetURL = req.url;
     res.redirect('/');
   }
 }
@@ -75,7 +76,11 @@ require("express-persona")(app, {
 // routes
 app.get('/', function (req, res) {
   if (req.session.authorized) {
-    res.redirect('/log-em');
+    if (req.session.targetURL) {
+      res.redirect(req.session.targetURL);
+    } else {
+      res.redirect('/log-em');
+    }
   } else {
     var email = req.session.email;
     res.render('home', {
@@ -88,15 +93,29 @@ app.get('/', function (req, res) {
 app.get('/log-em', restrict, function (req, res) {
   var email = req.session.email;
   var username = email.replace("@mozillafoundation.org", "");
+  var templateValues = {
+    currentUser: email,
+    username: username,
+    authorized: (req.session.authorized)
+  };
+  // pre-populate fields via URL for repeat use
+  if (req.query.team) {
+    templateValues.team = util.clean(decodeURI(req.query.team));
+  }
+  if (req.query.type) {
+    templateValues.type = util.clean(decodeURI(req.query.type));
+  }
+  if (req.query.description) {
+    templateValues.description = util.clean(decodeURI(req.query.description));
+  }
+  if (req.query.date) {
+    templateValues.date = util.clean(decodeURI(req.query.date));
+  }
 
   data.recentlyLogged(email, function gotRecentlyLogged(err, results) {
     var recent = util.cleanRecentForPresentation(results);
-    res.render('log-em', {
-      currentUser: email,
-      username: username,
-      authorized: (req.session.authorized),
-      recentlyLogged: recent
-    });
+    templateValues.recentlyLogged = recent;
+    res.render('log-em', templateValues);
   });
 });
 

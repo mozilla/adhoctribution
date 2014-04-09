@@ -14,23 +14,24 @@
         <option value="webmaker">Webmaker</option>
       </select>
       <h5>Type <span class="glyphicon glyphicon-question-sign tooltipActive" data-toggle="tooltip" data-placement="right" title="Let me know if you need a new bucket here"></span></h5>
-      <select class="form-control" name="databucket" required>
+      <select class="form-control" name="databucket" id="databucket" required>
         <option value="default">--Select</option>
         <option value="content">Content</option>
         <option value="content">Translation</option>
         <option value="events">Events</option>
         <option value="training">Completed Training</option>
         <option value="community">Community Calls</option>
-        <option value="community">Partners &amp; 1:1 relations</option>
-        <option value="testing">Testing &amp; QA</option>
+        <option value="community">Partners</option>
+        <option value="community">1 to 1 relations</option>
+        <option value="testing">Testing and QA</option>
         <option value="apis">Build on our APIs</option>
       </select>
       <h5>Description <span class="glyphicon glyphicon-question-sign tooltipActive" data-toggle="tooltip" data-placement="right" title="No essays, just enough that we can look back and know what this was about."></span></h5>
-      <textarea class="form-control" name="description" rows="2" required></textarea>
+      <textarea class="form-control" name="description" id="description" rows="2" required>{{{description}}}</textarea>
       <h3>When <span class="glyphicon glyphicon-question-sign tooltipActive" data-toggle="tooltip" data-placement="right" title="The date the contribution activity happened"></span>
 </h3>
-      <input type="text" class="form-control date-format datePickerActive" name="date" id="date" placeholder="YYYY-MM-DD" required>
-      <br /><button class="btn btn-default btn-xs" id="btnToday">Today <span class="glyphicon glyphicon-calendar"></span></a>
+      <input type="text" class="form-control date-format datePickerActive" name="date" id="date" placeholder="YYYY-MM-DD" required value="{{{date}}}">
+      <br /><button class="btn btn-default btn-xs" id="btnToday">Today <span class="glyphicon glyphicon-calendar"></span></button>
     </div>
     <div class="col-sm-8">
       <h3>Who</h3>
@@ -38,7 +39,8 @@
       <textarea class="form-control" rows="16" name="contributors" required></textarea><br />
       <h5>Evidence (optional)</h5>
       <input type="text" name="evidence" placeholder="http://example.com" class="form-control"><br />
-      <button type="submit" class="btn btn-primary btn-lg">Log this <span class="glyphicon glyphicon-ok-sign"></span></a>
+      <button type="submit" class="btn btn-primary btn-lg">Log this <span class="glyphicon glyphicon-ok-sign"></span></button>
+      <button class="btn btn-default btn-xs pull-right" id="btnQuicklink">Get quick link for this <span class="glyphicon glyphicon-link"></span></button>
     </div>
   </form>
 </div>
@@ -68,3 +70,51 @@
   </table>
   </div>
 </div>
+
+
+<div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLinkLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLinkLabel">Quick link</h4>
+      </div>
+      <div class="modal-body">
+        <p>Use this URL as a shortcut to pre-populate this page.</p>
+        <input type="text" class="form-control" id="linkToCopy">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+{{#if type}}
+var textToFindType = '{{{type}}}';
+textToFindType = decodeURI(textToFindType);
+var elType = document.getElementById('databucket');
+for (var i = 0; i < elType.options.length; i++) {
+    if (elType.options[i].text === textToFindType) {
+        elType.selectedIndex = i;
+        break;
+    }
+}
+{{/if}}
+
+{{#if team}}
+var textToFindTeam = '{{{team}}}';
+textToFindTeam = decodeURI(textToFindTeam);
+var elTeam = document.getElementById('teamname');
+for (var i = 0; i < elTeam.options.length; i++) {
+    if (elTeam.options[i].text === textToFindTeam) {
+        elTeam.selectedIndex = i;
+        break;
+    }
+}
+{{/if}}
+
+</script>
