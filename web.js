@@ -4,6 +4,7 @@ var util = require("./lib/util");
 var logic = require("./lib/logic");
 var data = require("./lib/data");
 var enforce = require('express-sslify');
+var helmet = require('helmet');
 
 var app = express();
 
@@ -30,6 +31,8 @@ app.use(function (req, res, next) {
   res.locals.token = req.csrfToken();
   next();
 });
+app.use(helmet.hsts()); // HTTP Strict Transport Security
+app.use(helmet.xframe('deny')); // X-Frame-Options
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
 app.use('/bower', express.static(__dirname + '/bower_components'));
