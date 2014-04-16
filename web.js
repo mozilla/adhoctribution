@@ -4,6 +4,9 @@ var util = require("./lib/util");
 var logic = require("./lib/logic");
 var data = require("./lib/data");
 var enforce = require('express-sslify');
+var helmet = require('helmet');
+var https = require('https');
+var fs = require('fs');
 
 var app = express();
 
@@ -16,13 +19,16 @@ app.set('view engine', 'handlebars');
 
 app.use(logfmt.requestLogger());
 app.use(express.favicon());
-app.configure('production', function () {
-  app.use(enforce.HTTPS(true));
-});
+app.use(enforce.HTTPS(true));
 app.use(express.urlencoded());
 app.use(express.cookieParser(process.env.COOKIE_SECRET));
 app.use(express.session({
-  secret: process.env.SESSION_SECRET
+  secret: process.env.COOKIE_SECRET,
+  cookie: {
+    httpOnly: true,
+    proxy: true,
+    secure: true,
+  },
 }));
 app.use(express.csrf());
 app.use(function (req, res, next) {
@@ -30,6 +36,8 @@ app.use(function (req, res, next) {
   res.locals.token = req.csrfToken();
   next();
 });
+app.use(helmet.hsts()); // HTTP Strict Transport Security
+app.use(helmet.xframe('deny')); // X-Frame-Options
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
 app.use('/bower', express.static(__dirname + '/bower_components'));
@@ -181,6 +189,21 @@ app.get('/api', function (req, res) {
 });
 
 var port = Number(process.env.PORT || 5000);
-app.listen(port, function () {
-  console.log("Listening on " + port);
+
+app.configure('production', function () {
+  // production uses Heroku's SSL not our local test certificates
+  app.listen(port, function () {
+    console.log("Listening on " + port);
+  });
+});
+
+app.configure('development', function () {
+  // Localhost HTTPS
+  var options = {
+    key: fs.readFileSync('./config/key.pem'),
+    cert: fs.readFileSync('./config/cert.pem')
+  };
+  https.createServer(options, app).listen(port, function () {
+    console.log("Express server listening on port " + port);
+  });
 });

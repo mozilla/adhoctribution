@@ -19,6 +19,17 @@ See script in sql/table.sql
 For local dev, copy sample.env to .env and add credentials
 Set equivilent environment variables on Heroku
 
+## Localhost HTTPS
+
+You will need to generate a self-signed certificate for local development over HTTPS. See http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server
+
+Save the key and the cert here:
+
+```
+/config/key.pem
+/config/cert.pem
+```
+
 ## Running the app:
 
 ```
