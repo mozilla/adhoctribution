@@ -31,7 +31,11 @@ navigator.id.watch({
         _csrf: token
       },
       success: function (res, status, xhr) {
-        window.location.reload();
+        if (res.status === 'okay') {
+          window.location.reload();
+        } else {
+          window.alert(res.reason);
+        }
       },
       error: function (xhr, status, err) {
         navigator.id.logout();

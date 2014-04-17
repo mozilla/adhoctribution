@@ -69,12 +69,15 @@ require("express-persona")(app, {
         email: email
       });
       return;
+    } else {
+      console.log("Login attempt by: ", req.session.email);
+      req.session.email = null;
+      req.session.authorized = null;
+      res.json({
+        status: "failure",
+        reason: "Only users with a mozillafoundation.org email address may use this tool"
+      });
     }
-    console.log("Login attempt by: ", req.session.email);
-    res.json({
-      status: "failure",
-      reason: "Only users with a mozillafoundation.org email address may use this tool"
-    });
   },
   logoutResponse: function (err, req, res) {
     if (req.session.authorized) {
