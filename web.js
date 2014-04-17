@@ -62,7 +62,7 @@ function restrict(req, res, next) {
 require("express-persona")(app, {
   audience: process.env.HOST + ":" + process.env.PORT, // Must match your browser's address bar
   verifyResponse: function (err, req, res, email) {
-    if (util.endsWith(email, "mozillafoundation.org")) {
+    if (util.endsWith(email, "@mozillafoundation.org")) {
       req.session.authorized = true;
       res.json({
         status: "okay",
