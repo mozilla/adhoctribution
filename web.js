@@ -10,6 +10,11 @@ var fs = require('fs');
 
 var app = express();
 
+var cspPolicy = {
+  'default-src': ["'self'", 'https://login.persona.org'],
+  'script-src': ["'self'", 'https://login.persona.org'],
+};
+
 // set up handlebars view engine
 var handlebars = require('express3-handlebars').create({
   defaultLayout: 'main'
@@ -24,9 +29,9 @@ app.use(express.urlencoded());
 app.use(express.cookieParser(process.env.COOKIE_SECRET));
 app.use(express.session({
   secret: process.env.COOKIE_SECRET,
+  proxy: true,
   cookie: {
     httpOnly: true,
-    proxy: true,
     secure: true,
   },
 }));
@@ -38,6 +43,7 @@ app.use(function (req, res, next) {
 });
 app.use(helmet.hsts()); // HTTP Strict Transport Security
 app.use(helmet.xframe('deny')); // X-Frame-Options
+app.use(helmet.csp(cspPolicy));
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
 app.use('/bower', express.static(__dirname + '/bower_components'));

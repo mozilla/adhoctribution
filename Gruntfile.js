@@ -11,6 +11,7 @@ module.exports = function (grunt) {
   browserJSHint.browser = true;
 
   var clientSideJS = [
+    'public/js/main.js',
     'public/js/**/*.js',
     '!public/js/lib/**',
     '!public/js/vendor/**'

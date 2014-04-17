@@ -64,7 +64,7 @@
       <td>{{this}}</td>
     {{/each}}
 
-    <td><a href="/delete?contributor_id={{contributor_id}}&contribution_date={{contribution_date}}&mofo_team={{mofo_team}}&data_bucket={{data_bucket}}" onclick="return confirm('Are you sure?')" class="btn btn-xm"><span class="glyphicon glyphicon-trash"></span></a></td>
+    <td><a href="/delete?contributor_id={{contributor_id}}&contribution_date={{contribution_date}}&mofo_team={{mofo_team}}&data_bucket={{data_bucket}}" class="btn btn-xm deleteLink"><span class="glyphicon glyphicon-trash"></span></a></td>
     </tr>
   {{/each}}
   </table>
@@ -80,7 +80,7 @@
         <h4 class="modal-title" id="myModalLinkLabel">Quick link</h4>
       </div>
       <div class="modal-body">
-        <p>Use this URL as a shortcut to pre-populate this page.</p>
+        <p>Use this URL as a shortcut to pre-populate this form with your What and When fields.</p>
         <p><input type="text" class="form-control" id="linkToCopy"></p>
         <p class="small">Save this as a bookmark, or copy and paste into your browser bar.</p>
       </div>
@@ -91,31 +91,5 @@
   </div>
 </div>
 
-
-<script type="text/javascript">
-
-{{#if type}}
-var textToFindType = '{{{type}}}';
-textToFindType = decodeURI(textToFindType);
-var elType = document.getElementById('databucket');
-for (var i = 0; i < elType.options.length; i++) {
-    if (elType.options[i].text === textToFindType) {
-        elType.selectedIndex = i;
-        break;
-    }
-}
-{{/if}}
-
-{{#if team}}
-var textToFindTeam = '{{{team}}}';
-textToFindTeam = decodeURI(textToFindTeam);
-var elTeam = document.getElementById('teamname');
-for (var i = 0; i < elTeam.options.length; i++) {
-    if (elTeam.options[i].text === textToFindTeam) {
-        elTeam.selectedIndex = i;
-        break;
-    }
-}
-{{/if}}
-
-</script>
+<input type="hidden" id="hiddenType" value="{{{type}}}">
+<input type="hidden" id="hiddenTeam" value="{{{team}}}">

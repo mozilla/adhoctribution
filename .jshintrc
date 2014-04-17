@@ -4,7 +4,10 @@
     "define": true,
     "requirejs": true,
     "require": true,
-    "$": true
+    "$": true,
+    "document": true,
+    "navigator": true,
+    "window": true
   },
   "bitwise": true,
   "curly": true,

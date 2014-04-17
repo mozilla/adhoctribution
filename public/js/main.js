@@ -1,3 +1,96 @@
+var login = document.querySelector("#login");
+if (login) {
+  login.addEventListener("click", function () {
+    navigator.id.request({
+      siteName: "Ad hoc contribution logger"
+    });
+  }, false);
+}
+
+var logout = document.querySelector("#logout");
+if (logout) {
+  logout.addEventListener("click", function () {
+    navigator.id.logout();
+  }, false);
+}
+
+var token = $("meta[name='csrf-token']").attr("content");
+var currentUser = $("meta[name='persona-email']").attr("content");
+if (!currentUser) {
+  currentUser = null; // specifically set to null to avoid persona looping on logout
+}
+
+navigator.id.watch({
+  loggedInUser: currentUser,
+  onlogin: function (assertion) {
+    $.ajax({
+      type: 'POST',
+      url: '/persona/verify',
+      data: {
+        assertion: assertion,
+        _csrf: token
+      },
+      success: function (res, status, xhr) {
+        window.location.reload();
+      },
+      error: function (xhr, status, err) {
+        navigator.id.logout();
+        window.alert("Login failure: " + err);
+      }
+    });
+  },
+  onlogout: function () {
+    $.ajax({
+      type: 'POST',
+      url: '/persona/logout',
+      data: {
+        _csrf: token
+      },
+      success: function (res, status, xhr) {
+        window.location.reload();
+      },
+      error: function (xhr, status, err) {
+        window.alert("Logout failure: " + err);
+      }
+    });
+  }
+});
+
+// pre-fill quick link
+
+var type = $("#hiddenType").val();
+var team = $("#hiddenTeam").val();
+
+if (type) {
+  var textToFindType = type;
+  textToFindType = decodeURI(textToFindType);
+  var elType = document.getElementById('databucket');
+  for (var i = 0; i < elType.options.length; i++) {
+      if (elType.options[i].text === textToFindType) {
+          elType.selectedIndex = i;
+          break;
+      }
+  }
+}
+
+if (team) {
+  var textToFindTeam = team;
+  textToFindTeam = decodeURI(textToFindTeam);
+  var elTeam = document.getElementById('teamname');
+  for (var i = 0; i < elTeam.options.length; i++) {
+      if (elTeam.options[i].text === textToFindTeam) {
+          elTeam.selectedIndex = i;
+          break;
+      }
+  }
+}
+
+$(".deleteLink").click(function (event) {
+  if (!confirm("Are you sure?")) {
+    event.preventDefault();
+  }
+});
+
 // Validation
 $.validator.addMethod("valueNotEquals", function (value, element, arg) {
   return arg !== value;
