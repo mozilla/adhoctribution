@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "A tool for logging ad-hoc contribution activities that we can't count elsewhere",
   "main": "web.js",
+  "engines": {
+    "node": "0.10.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
