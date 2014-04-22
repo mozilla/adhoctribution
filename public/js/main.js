@@ -70,10 +70,10 @@ if (type) {
   textToFindType = decodeURI(textToFindType);
   var elType = document.getElementById('databucket');
   for (var i = 0; i < elType.options.length; i++) {
-      if (elType.options[i].text === textToFindType) {
-          elType.selectedIndex = i;
-          break;
-      }
+    if (elType.options[i].text === textToFindType) {
+      elType.selectedIndex = i;
+      break;
+    }
   }
 }
 
@@ -82,15 +82,15 @@ if (team) {
   textToFindTeam = decodeURI(textToFindTeam);
   var elTeam = document.getElementById('teamname');
   for (var i = 0; i < elTeam.options.length; i++) {
-      if (elTeam.options[i].text === textToFindTeam) {
-          elTeam.selectedIndex = i;
-          break;
-      }
+    if (elTeam.options[i].text === textToFindTeam) {
+      elTeam.selectedIndex = i;
+      break;
+    }
   }
 }
 
 $(".deleteLink").click(function (event) {
-  if (!confirm("Are you sure?")) {
+  if (!window.confirm("Are you sure?")) {
     event.preventDefault();
   }
 });
