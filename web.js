@@ -113,7 +113,8 @@ app.get('/log-em', restrict, function (req, res) {
   var templateValues = {
     currentUser: email,
     username: username,
-    authorized: (req.session.authorized)
+    authorized: (req.session.authorized),
+    pageJS: 'logem',
   };
   // pre-populate fields via URL for repeat use
   if (req.query.team) {

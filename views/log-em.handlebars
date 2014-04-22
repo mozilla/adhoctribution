@@ -72,12 +72,12 @@
 </div>
 
 
-<div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLinkLabel" aria-hidden="true">
+<div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLinkLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLinkLabel">Quick link</h4>
+        <h4 class="modal-title" id="linkModalLinkLabel">Quick link</h4>
       </div>
       <div class="modal-body">
         <p>Use this URL as a shortcut to pre-populate this form with your What and When fields.</p>
@@ -86,6 +86,83 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Help -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">...is at hand. <a href="http://www.youtube.com/watch?v=pd_2ins6lcA" target="_blank">Bat phone</a>.</h4>
+      </div>
+      <div class="modal-body">
+        <h4>What should I record here?</h4>
+        <p>Contribution activity that doesn't exist in another database. For example, don't log code contribution here if it's already in Gitbhub. But, this would be a good place to note people who presented on a community call. <a href="#" id="showWelcome">Show the welcome examples</a>.</p>
+        <hr />
+        <h4>What counts as contribtuion?</h4>
+        <p>In the end, that's your call, but <a href="https://wiki.mozilla.org/Foundation/Metrics/Contributor_Dashboard#Sniff_test" target="_blank">see the Sniff Test</a> for guidance.</p>
+        <hr />
+        <h4>It broke! And I wish it would...</h4>
+        <ul>
+          <li><a href="https://github.com/adamlofting/adhoctribution/issues" target="_blank">File a bug or request (github issues)</a></li>
+          <li><a href="https://github.com/adamlofting/adhoctribution/" target="_blank">Contribute code.</a></li>
+        </ul>
+        <hr />
+        <h4>How long?</h4>
+        <p>The contributor dashboard will be udpated with recent contribution activity within an hour. Backdated activity is updated every few hours.</p>
+        <hr />
+        <h4>Still not sure about something?</h4>
+        <p>Ping Adam Lofting.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Welcome -->
+<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModalLinkLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="welcomeModalLinkLabel">Welcome! :)</h4>
+      </div>
+      <div class="modal-body">
+        <p>This tool is for collecting small pots of contribution activity that happen here and there across the MoFo universe.</p>
+        <p>It's a backup solution for logging things that can't be counted elsewhere, or where developing another system would not be an effective use of time.</p>
+        <div class="alert alert-success">
+          <h4>It's good for things like:</h4>
+          <ul>
+            <li>Recording those five people who helped at your event</li>
+            <li>Logging people who presented on a community call</li>
+            <li>Remembering that person who verbally reported a bug at an event</li>
+          </ul>
+        </div>
+        <div class="alert alert-warning">
+          <h4>Perhaps check before logging things like</h4>
+          <ul>
+            <li>A list of a hundred people who volunteered at an event</li>
+          </ul>
+        </div>
+        <div class="alert alert-danger">
+          <h4>Don't use it for</h4>
+          <ul>
+            <li>Logging thousands of people who did something, if we could better reocord and automate this somewhere else.</li>
+            <li>Logging things we are counting already (e.g. code contributions in github)</li>
+            <li>Logging things we are working on counting automatically (e.g. writing articles on SUMO)</li>
+            <li>Planning your next vacation</li>
+          </ul>
+        </div>
+        <p>The counts from this database will be added to the Contributor Dashboard automatically.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Got it!</button>
       </div>
     </div>
   </div>

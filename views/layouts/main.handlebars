@@ -44,40 +44,6 @@
       </div>
     </div>
 
-    <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">...is at hand. <a href="http://www.youtube.com/watch?v=pd_2ins6lcA" target="_blank">Bat phone</a>.</h4>
-      </div>
-      <div class="modal-body">
-        <h4>What should I record here?</h4>
-        <p>Contribution activity that doesn't exist in another database. For example, don't log code contribution here if it's already in Gitbhub. But, this would be a good place to note people who presented on a community call.</p>
-        <hr />
-        <h4>What counts as contribtuion?</h4>
-        <p>In the end, that's your call, but <a href="https://wiki.mozilla.org/Foundation/Metrics/Contributor_Dashboard#Sniff_test" target="_blank">see the Sniff Test</a> for guidance.</p>
-        <hr />
-        <h4>It broke! And I wish it would...</h4>
-        <ul>
-          <li><a href="https://github.com/adamlofting/adhoctribution/issues" target="_blank">File a bug or request (github issues)</a></li>
-          <li><a href="https://github.com/adamlofting/adhoctribution/" target="_blank">Contribute code.</a></li>
-        </ul>
-        <hr />
-        <h4>How long?</h4>
-        <p>The contributor dashboard will be udpated with recent contribution activity within an hour. Backdated activity is updated every few hours.</p>
-        <hr />
-        <h4>Still not sure about something?</h4>
-        <p>Ping Adam Lofting.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
     <script src="/bower/jquery/dist/jquery.js"></script>
     <script src="/bower/jquery.validation/dist/jquery.validate.min.js"></script>
@@ -86,5 +52,9 @@
     <script src="/bower/jquery-cookie/jquery.cookie.js"></script>
 		<script src="https://login.persona.org/include.js"></script>
 		<script src="js/main.js"></script>
+    <!-- {{{pageJS}}} -->
+    {{#if pageJS}}
+      <script src="js/{{{pageJS}}}.js"></script>
+    {{/if}}
     </body>
 </html>
