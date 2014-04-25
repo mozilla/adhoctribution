@@ -44,6 +44,9 @@ app.use(function (req, res, next) {
 app.use(helmet.hsts()); // HTTP Strict Transport Security
 app.use(helmet.xframe('deny')); // X-Frame-Options
 app.use(helmet.csp(cspPolicy));
+app.use(helmet.iexss());
+app.use(helmet.contentTypeOptions());
+app.use(helmet.hidePoweredBy());
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
 app.use('/bower', express.static(__dirname + '/bower_components'));
