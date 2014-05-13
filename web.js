@@ -169,14 +169,7 @@ app.get('/api', function (req, res) {
   var bucket = null;
 
   if (req.query.date) {
-    date = new Date(req.query.date);
-    if (Object.prototype.toString.call(date) === "[object Date]") {
-      if (isNaN(date.getTime())) {
-        date = null; // date is not valid
-      }
-    } else {
-      date = null;
-    }
+    date = util.parseAndCheckDate(req.query.date);
   }
 
   if (!date) {
