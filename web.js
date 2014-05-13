@@ -154,7 +154,7 @@ app.get('/delete', restrict, function (req, res) {
     logged_by: req.session.email,
     contributor_id: req.query.contributor_id,
     contribution_date: req.query.contribution_date,
-    mofo_team: req.query.mofo_team,
+    moz_team: req.query.moz_team,
     data_bucket: req.query.data_bucket
   };
   data.deleteItem(toDelete, function deletedItem(err, response) {
