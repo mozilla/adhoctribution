@@ -189,6 +189,8 @@ app.get('/api', function (req, res) {
     return;
   }
 
+  bucket = logic.applyBucketGroupings(bucket);
+
   data.getContributorCounts(date, team, bucket, function gotCounts(err, result) {
     res.json(result);
   });
