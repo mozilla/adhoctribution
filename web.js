@@ -180,7 +180,7 @@ app.get('/api', function (req, res) {
   }
 
   if (!team) {
-    res.end('Missing parameter: "team". E.g. webmaker, openbadges, opennews, appmaker, sciencelab, engagement');
+    res.end('Missing parameter: "team". E.g. mofo-webmaker, moco-engagement');
     return;
   }
 
