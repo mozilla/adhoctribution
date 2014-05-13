@@ -163,27 +163,27 @@ app.get('/delete', restrict, function (req, res) {
   });
 });
 
-app.get('/api', function (req, res) {
-  var date = null;
-  var team = null;
-  var bucket = null;
+// app.get('/api/summary', function (req, res) {
+//   data.getSummaryContributorCounts(function gotCounts(err, result) {
+//     res.json(result);
+//   });
+// });
 
-  if (req.query.date) {
-    date = util.parseAndCheckDate(req.query.date);
-  }
+app.get('/api', function (req, res) {
+  var team = req.query.team;
+  var bucket = req.query.bucket;
+  var date = util.parseAndCheckDate(req.query.date);
 
   if (!date) {
     res.end('Missing parameter: "date". Must be in this format: YYYY-MM-DD.');
     return;
   }
 
-  team = req.query.team;
   if (!team) {
     res.end('Missing parameter: "team". E.g. webmaker, openbadges, opennews, appmaker, sciencelab, engagement');
     return;
   }
 
-  bucket = req.query.bucket;
   if (!bucket) {
     res.end('Missing parameter: "bucket". E.g. code, content, events, training, community, testing, apis');
     return;
