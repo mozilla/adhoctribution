@@ -6,13 +6,21 @@
       <h5>Team</h5>
       <select class="form-control" name="teamname" id="teamname" required>
         <option value="default">--Select</option>
-        <option value="appmaker">Appmaker</option>
-        <option value="openbadges">Badges</option>
-        <option value="engagement">Engagement</option>
-        <option value="hive">Hive</option>
-        <option value="opennews">Open News</option>
-        <option value="sciencelab">Science Lab</option>
-        <option value="webmaker">Webmaker</option>
+        <optgroup label="MoFo">
+          <option value="appmaker">Appmaker</option>
+          <option value="openbadges">Badges</option>
+          <option value="engagement">Engagement</option>
+          <option value="hive">Hive</option>
+          <option value="opennews">Open News</option>
+          <option value="sciencelab">Science Lab</option>
+          <option value="webmaker">Webmaker</option>
+        </optgroup>
+        <optgroup label="MoCo">
+          <option value="mocoengagement">Engagement</option>
+          <option value="mocofinance">Finance</option>
+          <option value="mocolegal">Legal</option>
+          <option value="mocoprivacy">Privacy</option>
+        </optgroup>
       </select>
       <h5>Type <span class="glyphicon glyphicon-question-sign tooltipActive" data-toggle="tooltip" data-placement="right" title="Let me know if you need a new bucket here"></span></h5>
       <select class="form-control" name="databucket" id="databucket" required>
