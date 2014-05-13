@@ -163,11 +163,11 @@ app.get('/delete', restrict, function (req, res) {
   });
 });
 
-// app.get('/api/summary', function (req, res) {
-//   data.getSummaryContributorCounts(function gotCounts(err, result) {
-//     res.json(result);
-//   });
-// });
+app.get('/api/totals', function (req, res) {
+  data.getSummaryContributorCounts(function gotCounts(err, result) {
+    res.json(result);
+  });
+});
 
 app.get('/api', function (req, res) {
   var team = req.query.team;
