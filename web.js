@@ -65,7 +65,7 @@ function restrict(req, res, next) {
 require("express-persona")(app, {
   audience: process.env.HOST + ":" + process.env.PORT, // Must match your browser's address bar
   verifyResponse: function (err, req, res, email) {
-    if (util.endsWith(email, "@mozillafoundation.org")) {
+    if (util.isValidEmail(email, ["@mozillafoundation.org","@mozilla.com"])) {
       req.session.authorized = true;
       res.json({
         status: "okay",
@@ -78,7 +78,7 @@ require("express-persona")(app, {
       req.session.authorized = null;
       res.json({
         status: "failure",
-        reason: "Only users with a mozillafoundation.org email address may use this tool"
+        reason: "Only users with a mozillafoundation.org or mozilla.com email address may use this tool"
       });
     }
   },
