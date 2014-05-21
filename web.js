@@ -19,6 +19,7 @@ var cspPolicy = {
 var handlebars = require('express3-handlebars').create({
   defaultLayout: 'main'
 });
+handlebars.loadPartials();
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
@@ -65,7 +66,7 @@ function restrict(req, res, next) {
 require("express-persona")(app, {
   audience: process.env.HOST + ":" + process.env.PORT, // Must match your browser's address bar
   verifyResponse: function (err, req, res, email) {
-    if (util.isValidEmail(email, ["@mozillafoundation.org","@mozilla.com"])) {
+    if (util.isValidEmail(email, ["@mozillafoundation.org", "@mozilla.com"])) {
       req.session.authorized = true;
       res.json({
         status: "okay",

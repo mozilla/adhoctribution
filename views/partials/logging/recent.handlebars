@@ -1,0 +1,26 @@
+<br /><br /><br /><br /><hr />
+<div class="row">
+  <div class="col-sm-12">
+  <h4 id="logged">Logged by you (most recent) <a href="#top" class="btn btn-xs btn-default pull-right">Log more <span class="glyphicon glyphicon-arrow-up"></span></a></h4>
+  <table class="table table-striped">
+  <tr>
+    <th>Logged on</th>
+    <th>Contributor ID</th>
+    <th>Contribution Date</th>
+    <th>Team</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>&nbsp;</th>
+  </tr>
+  {{#each recentlyLogged}}
+    <tr>
+    {{#each this}}
+      <td>{{this}}</td>
+    {{/each}}
+
+    <td><a href="/delete?contributor_id={{contributor_id}}&contribution_date={{contribution_date}}&moz_team={{moz_team}}&data_bucket={{data_bucket}}" class="btn btn-xm deleteLink"><span class="glyphicon glyphicon-trash"></span></a></td>
+    </tr>
+  {{/each}}
+  </table>
+  </div>
+</div>
