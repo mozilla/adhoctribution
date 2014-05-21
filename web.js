@@ -111,7 +111,7 @@ app.get('/', function (req, res) {
   }
 });
 
-function renderLoggingPage(req, res, viewName) {
+function renderLoggingPage(req, res, viewName, extraTemplateValues) {
   var email = req.session.email;
   var username = email.replace("@mozillafoundation.org", "");
   var templateValues = {
@@ -120,6 +120,14 @@ function renderLoggingPage(req, res, viewName) {
     authorized: (req.session.authorized),
     pageJS: 'logem',
   };
+
+  // if this page has extraTemplateValues, add these to the object
+  if (extraTemplateValues) {
+    for (var attrname in extraTemplateValues) {
+      templateValues[attrname] = extraTemplateValues[attrname];
+    }
+  }
+
   // pre-populate fields via URL for repeat use
   if (req.query.team) {
     templateValues.team = util.clean(decodeURI(req.query.team));
@@ -142,11 +150,11 @@ function renderLoggingPage(req, res, viewName) {
 }
 
 app.get('/log-em', restrict, function (req, res) {
-  renderLoggingPage(req, res, 'log-em');
+  renderLoggingPage(req, res, 'log-em', null);
 });
 
 app.get('/log-many', restrict, function (req, res) {
-  renderLoggingPage(req, res, 'log-many');
+  renderLoggingPage(req, res, 'log-many', null);
 });
 
 app.post('/log-em', restrict, function (req, res) {
@@ -155,6 +163,19 @@ app.post('/log-em', restrict, function (req, res) {
       console.error(err);
     }
     res.redirect('/log-em#logged');
+  });
+});
+
+app.post('/log-many', restrict, function (req, res) {
+  logic.processMany(req.body, req.session.email, function processedForm(err, saved, errors) {
+    if (err) {
+      console.error(err);
+    }
+    var extraTemplateValues = {
+      saved: saved,
+      errors: errors
+    };
+    renderLoggingPage(req, res, 'log-many-results', extraTemplateValues);
   });
 });
 

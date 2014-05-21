@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-sm-10">
+    <h2>Contributions from multiple events</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-10">
+
+    <div class="alert alert-success"><p>{{saved.length}} Rows were successfully logged</p></div>
+    <div class="alert alert-danger"><p>{{errors.length}} Rows had errors: </p>
+      {{#if errors}}
+      <br/>
+      <ul>
+        {{#each errors}}
+          <li>{{this}}</li>
+        {{/each}}
+      {{/if}}
+      </ul>
+    </div>
+    <a href="/log-many" class="btn btn-primary btn-lg" role="button">Log more contributions &raquo;</a>
+
+    <br /><br /><br /><br />
+  </div>
+</div>
+
+
+
+{{> logging/recent}}
+{{> logging/help}}
+{{> logging/hidden}}

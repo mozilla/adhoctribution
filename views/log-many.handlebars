@@ -1,26 +1,29 @@
 <div class="row">
-  <div class="col-sm-10">
+  <div class="col-sm-12">
     <h2>Contributions from multiple events</h2>
-    <p class="terms">Use this form to bulk load historic records of contributions across multiple events.</p>
+    <p class="terms">Use this form to bulk load historic records of contributions across multiple events and multiple dates. <a href="/log-em">Switch to single event logger</a>.</p>
   </div>
 </div>
 <div class="row">
-  <form id="contributionForm" method="post" action="/log-em">
+  <form id="contributionForm" method="post" action="/log-many">
     <input type="hidden" name="_csrf" value="{{{token}}}">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <h3>What</h3>
       {{> logging/select-teams}}
       {{> logging/select-type}}
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <h3>Who, When, Description</h3>
-      <p class="small">One contribution per line<br/>
-        No quote marks<br/>
-        Comma seperated<br/>
-        Date must be formatted yyyy-mm-dd<br/>
-        email@address.com, yyyy-mm-dd, short description of the contribution activity<br />
-      </p>
-      <textarea class="form-control" rows="12" name="contributors" required></textarea>
+      <ul class="small">
+        <li>Copy and paste from your spreadsheet or CSV file</li>
+        <li>One contribution per line</li>
+        <li>email@address.com, yyyy-mm-dd, short description of the contribution activity</li>
+        <li>No quote marks</li>
+        <li>Comma seperated</li>
+        <li>Date must be formatted yyyy-mm-dd</li>
+        <li>Don't worry about loading the same record twice (we won't double count it)</li>
+      </ul>
+      <textarea class="form-control" rows="12" name="contributors" wrap="off" required placeholder="email@address.com, yyyy-mm-dd, short description of the contribution activity"></textarea>
       {{> logging/clarify}}
       <br />
       {{> logging/evidence}}
