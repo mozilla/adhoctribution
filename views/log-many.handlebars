@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-10">
+    <h2>Contributions from multiple events</h2>
+    <p class="terms">Use this form to bulk load historic records of contributions across multiple events.</p>
+  </div>
+</div>
+<div class="row">
+  <form id="contributionForm" method="post" action="/log-em">
+    <input type="hidden" name="_csrf" value="{{{token}}}">
+    <div class="col-sm-4">
+      <h3>What</h3>
+      {{> logging/select-teams}}
+      {{> logging/select-type}}
+    </div>
+    <div class="col-sm-8">
+      <h3>Who, When, Description</h3>
+      <p class="small">One contribution per line<br/>
+        No quote marks<br/>
+        Comma seperated<br/>
+        Date must be formatted yyyy-mm-dd<br/>
+        email@address.com, yyyy-mm-dd, short description of the contribution activity<br />
+      </p>
+      <textarea class="form-control" rows="12" name="contributors" required></textarea>
+      {{> logging/clarify}}
+      <br />
+      {{> logging/evidence}}
+      <br />
+      <button type="submit" class="btn btn-primary btn-lg">Log these <span class="glyphicon glyphicon-ok-sign"></span></button>
+    </div>
+  </form>
+</div>
+
+
+
+{{> logging/recent}}
+{{> logging/help}}
+{{> logging/hidden}}

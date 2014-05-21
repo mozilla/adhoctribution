@@ -111,7 +111,7 @@ app.get('/', function (req, res) {
   }
 });
 
-app.get('/log-em', restrict, function (req, res) {
+function renderLoggingPage(req, res, viewName) {
   var email = req.session.email;
   var username = email.replace("@mozillafoundation.org", "");
   var templateValues = {
@@ -137,8 +137,16 @@ app.get('/log-em', restrict, function (req, res) {
   data.recentlyLogged(email, function gotRecentlyLogged(err, results) {
     var recent = util.cleanRecentForPresentation(results);
     templateValues.recentlyLogged = recent;
-    res.render('log-em', templateValues);
+    res.render(viewName, templateValues);
   });
+}
+
+app.get('/log-em', restrict, function (req, res) {
+  renderLoggingPage(req, res, 'log-em');
+});
+
+app.get('/log-many', restrict, function (req, res) {
+  renderLoggingPage(req, res, 'log-many');
 });
 
 app.post('/log-em', restrict, function (req, res) {

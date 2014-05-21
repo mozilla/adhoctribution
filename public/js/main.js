@@ -124,7 +124,7 @@ $("#contributionForm").validate({
       valueNotEquals: "Which team is this for?"
     },
     "databucket": {
-      valueNotEquals: "Please select a bucket"
+      valueNotEquals: "What type of contribution was this?"
     }
   }
 });
