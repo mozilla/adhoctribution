@@ -113,7 +113,7 @@ app.get('/', function (req, res) {
 
 function renderLoggingPage(req, res, viewName, extraTemplateValues) {
   var email = req.session.email;
-  var username = email.replace("@mozillafoundation.org", "");
+  var username = util.allBeforeTheAt(email);
   var templateValues = {
     currentUser: email,
     username: username,
