@@ -26,6 +26,7 @@
     "express": "~3.5.1",
     "async": "~0.6.2",
     "mysql": "~2.1.1",
+    "newrelic": "~1.6.0",
     "logfmt": "~1.1.2",
     "express-persona": "~0.1.1",
     "express3-handlebars": "~0.5.0",
