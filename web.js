@@ -1,3 +1,7 @@
+if ( process.env.NEW_RELIC_ENABLED ) {
+  require( "newrelic" );
+}
+
 var express = require("express");
 var logfmt = require("logfmt");
 var util = require("./lib/util");
