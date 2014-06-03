@@ -1,5 +1,5 @@
-if ( process.env.NEW_RELIC_ENABLED ) {
-  require( "newrelic" );
+if (process.env.NEW_RELIC_ENABLED) {
+  require("newrelic");
 }
 
 var express = require("express");
@@ -11,6 +11,8 @@ var enforce = require('express-sslify');
 var helmet = require('helmet');
 var https = require('https');
 var fs = require('fs');
+var async = require('async');
+var mocofoteamlist = require('mocofoteamlist');
 
 var app = express();
 
@@ -146,11 +148,27 @@ function renderLoggingPage(req, res, viewName, extraTemplateValues) {
     templateValues.date = util.clean(decodeURI(req.query.date));
   }
 
-  data.recentlyLogged(email, function gotRecentlyLogged(err, results) {
-    var recent = util.cleanRecentForPresentation(results);
-    templateValues.recentlyLogged = recent;
-    res.render(viewName, templateValues);
-  });
+  async.parallel([
+
+      function (callback) {
+        // Show the user their recently logged contributors
+        data.recentlyLogged(email, function gotRecentlyLogged(err, results) {
+          var recent = util.cleanRecentForPresentation(results);
+          templateValues.recentlyLogged = recent;
+          callback(null);
+        });
+      },
+      function (callback) {
+        mocofoteamlist.getHTMLSelectOptionsForTeams(function gotHTML(err, list) {
+          templateValues.mocofoteamlist = list;
+          callback(null);
+        });
+      }
+    ],
+    // once all parallel tasks are done
+    function (err, results) {
+      res.render(viewName, templateValues);
+    });
 }
 
 app.get('/log-em', restrict, function (req, res) {
