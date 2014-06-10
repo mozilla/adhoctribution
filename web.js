@@ -251,4 +251,6 @@ app.configure('development', function () {
   });
 });
 
-setInterval(pollBadgekitApi, process.env.BADGEKIT_API_POLLING_FREQUENCY_MINS * 60 * 1000);
+if (process.env.BADGEKIT_API_POLLING_FREQUENCY_MINS) {
+  setInterval(pollBadgekitApi, process.env.BADGEKIT_API_POLLING_FREQUENCY_MINS * 60 * 1000);
+}
