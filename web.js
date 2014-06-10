@@ -7,6 +7,7 @@ var logfmt = require("logfmt");
 var util = require("./lib/util");
 var logic = require("./lib/logic");
 var data = require("./lib/data");
+var pollBadgekitApi = require("./lib/badgekit-poll.js");
 var enforce = require('express-sslify');
 var helmet = require('helmet');
 var https = require('https');
@@ -249,3 +250,5 @@ app.configure('development', function () {
     console.log("Express server listening on port " + port);
   });
 });
+
+setInterval(pollBadgekitApi, process.env.BADGEKIT_API_POLLING_FREQUENCY_MINS * 60 * 1000);

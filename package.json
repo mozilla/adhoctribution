@@ -31,7 +31,8 @@
     "express-persona": "~0.1.1",
     "express3-handlebars": "~0.5.0",
     "express-sslify": "0.0.1",
-    "helmet": "~0.2.1"
+    "helmet": "~0.2.1",
+    "badgekit-api-client": "https://github.com/mozilla/badgekit-api-client/tarball/v0.2.2"
   },
   "devDependencies": {
     "grunt-jsbeautifier": "~0.2.6",
