@@ -239,7 +239,7 @@ app.get('/api', function (req, res) {
   data.getContributorCounts(date, team, bucket, function gotCounts(err, result) {
     if (err) {
       console.error(err);
-      return res.status(500).json({status: 'Internal Server Error'});
+      return res.status(500).json({message: 'Internal Server Error'});
     }
     res.json(result);
   });
