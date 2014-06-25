@@ -165,6 +165,7 @@ app.post('/log-em', restrict, function (req, res) {
   logic.processForm(req.body, req.session.email, function processedForm(err, response) {
     if (err) {
       console.error(err);
+      return res.status(500).send('Internal Server Error');
     }
     res.redirect('/log-em#logged');
   });
@@ -174,6 +175,7 @@ app.post('/log-many', restrict, function (req, res) {
   logic.processMany(req.body, req.session.email, function processedForm(err, saved, errors) {
     if (err) {
       console.error(err);
+      return res.status(500).send('Internal Server Error');
     }
     var extraTemplateValues = {
       saved: saved,
@@ -192,6 +194,10 @@ app.get('/delete', restrict, function (req, res) {
     data_bucket: req.query.data_bucket
   };
   data.deleteItem(toDelete, function deletedItem(err, response) {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Internal Server Error');
+    }
     console.log("deleted", req.session.email);
     res.redirect('/log-em#logged');
   });
@@ -199,6 +205,10 @@ app.get('/delete', restrict, function (req, res) {
 
 app.get('/api/totals', function (req, res) {
   data.getSummaryContributorCounts(function gotCounts(err, result) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({status: 'Internal Server Error'});
+    }
     res.json(result);
   });
 });
@@ -207,25 +217,30 @@ app.get('/api', function (req, res) {
   var team = req.query.team;
   var bucket = req.query.bucket;
   var date = util.parseAndCheckDate(req.query.date);
+  var errorMessage;
 
   if (!date) {
-    res.end('Missing parameter: "date". Must be in this format: YYYY-MM-DD.');
-    return;
+    errorMessage = 'Missing parameter: "date". Must be in this format: YYYY-MM-DD.';
+    return res.status(400).json({message: errorMessage});
   }
 
   if (!team) {
-    res.end('Missing parameter: "team". E.g. mofo-webmaker, moco-engagement');
-    return;
+    errorMessage = 'Missing parameter: "team". E.g. mofo-webmaker, moco-engagement';
+    return res.status(400).json({message: errorMessage});
   }
 
   if (!bucket) {
-    res.end('Missing parameter: "bucket". E.g. code, content, events, training, community, testing, apis');
-    return;
+    errorMessage = 'Missing parameter: "bucket". E.g. code, content, events, training, community, testing, apis';
+    return res.status(400).json({message: errorMessage});
   }
 
   bucket = logic.applyBucketGroupings(bucket);
 
   data.getContributorCounts(date, team, bucket, function gotCounts(err, result) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({message: 'Internal Server Error'});
+    }
     res.json(result);
   });
 });
